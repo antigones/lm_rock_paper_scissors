@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Leap Test</title>
+    <style type="text/css">
+		#out {
+		font-size: 60px;
+		}
+    </style>
+    <script src="//js.leapmotion.com/leap-1.1.0.min.js"></script>
+  </head>
+  <body>
+  <pre>
+    <div id="out"></div>
+  </pre>
+      <script type ="text/javascript">
+		
+		var controller = (new Leap.Controller);
+		controller.connect();
+		var controllerOptions = {}
+		Leap.loop(controllerOptions, function(frame) {
+		// Body of callback function
+		var result = "";
+		var extendedFingers = 0;
+		if (frame.hands.length > 0) {
+			var hand = frame.hands[0];
+			for(var f = 0; f < hand.fingers.length; f++){
+				var finger = hand.fingers[f];
+				if (finger.extended) extendedFingers++;
+			}
+			
+			if (extendedFingers == 0) result = "Rock";
+			if (extendedFingers == 2) result = "Scissor";
+			if (extendedFingers == 5) result = "Paper";		
+			
+		}
+		var frameString = result;
+		document.getElementById("out").innerHTML = frameString;
+	})
+
+    </script>
+  </body>
+</html>
