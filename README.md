@@ -1,1 +1,1 @@
-# lm_rock_paper_scissors
+# Leap Motion "Rock, Paper, Scissors!"
